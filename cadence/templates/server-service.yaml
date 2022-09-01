@@ -15,6 +15,9 @@ metadata:
     app.kubernetes.io/component: frontend
     app.kubernetes.io/part-of: {{ .Chart.Name }}
 spec:
+{{- with .Values.frontend.service.loadBalancerIP }}
+  loadBalancerIP: {{.}}
+{{- end }}
   type: {{ .Values.server.frontend.service.type }}
   ports:
     - port: {{ .Values.server.frontend.service.port }}
